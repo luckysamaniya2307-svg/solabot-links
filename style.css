@@ -1,0 +1,507 @@
+/* =====================================================================
+   Solabot Technologies Pvt. Ltd. — "Connect with Solabot" link hub
+   style.css
+   Palette inspired by the Solabot logo: teal, cyan, blue, green on white.
+   ===================================================================== */
+
+:root {
+  /* Brand palette (inspired by the Solabot logo) */
+  --sola-green: #4caf3f;
+  --sola-teal: #0aa3a0;
+  --sola-cyan: #11b2d6;
+  --sola-blue: #1577c2;
+  --sola-deep-blue: #0f4c81;
+
+  --ink: #10222e;
+  --ink-soft: #5a6b75;
+  --white: #ffffff;
+  --surface: #ffffff;
+  --page-bg: #f6fbfd;
+  --border: #e6eef2;
+
+  --shadow-sm: 0 2px 8px rgba(15, 76, 129, 0.06);
+  --shadow-md: 0 10px 30px rgba(15, 76, 129, 0.10);
+  --shadow-lg: 0 20px 50px rgba(15, 76, 129, 0.16);
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --maxw: 1080px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ----------------------------- Reset ----------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--page-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------------------- Decorative background --------------------- */
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.22;
+  animation: float 18s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 440px;
+  height: 440px;
+  top: -140px;
+  left: -120px;
+  background: radial-gradient(circle at 30% 30%, var(--sola-green), var(--sola-teal));
+}
+
+.blob-2 {
+  width: 520px;
+  height: 520px;
+  top: 20%;
+  right: -180px;
+  background: radial-gradient(circle at 30% 30%, var(--sola-cyan), var(--sola-blue));
+  animation-delay: -6s;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  bottom: -160px;
+  left: 30%;
+  background: radial-gradient(circle at 30% 30%, var(--sola-teal), var(--sola-blue));
+  animation-delay: -12s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -40px) scale(1.08);
+  }
+}
+
+/* ------------------------------ Layout ---------------------------- */
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 48px) 48px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ------------------------------ Hero ------------------------------ */
+.hero {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vw, 56px);
+  animation: rise 0.8s var(--ease) both;
+}
+
+.logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 26px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 28px;
+}
+
+.logo {
+  display: block;
+  height: auto;
+  width: clamp(190px, 40vw, 300px);
+  object-fit: contain;
+}
+
+.tagline {
+  /* ~14.4px on small mobile → ~20px on desktop */
+  font-size: clamp(0.9rem, 1.4vw + 0.55rem, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  max-width: 34ch;
+  margin: 0 auto 18px;
+  /* Brand-color gradient inspired by the Solabot logo (teal → blue → green) */
+  background: linear-gradient(
+    90deg,
+    #0aa3b8 0%,
+    #087fa8 38%,
+    #168c68 72%,
+    #4caf50 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--sola-deep-blue); /* fallback if background-clip unsupported */
+  /* Wrap naturally on small screens without overflow */
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.headline {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(
+    100deg,
+    var(--sola-green),
+    var(--sola-teal) 35%,
+    var(--sola-cyan) 60%,
+    var(--sola-blue)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--sola-blue); /* fallback */
+  margin-bottom: 14px;
+}
+
+.subtext {
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ------------------------------ Cards ----------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(16px, 2.4vw, 22px);
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+  /* staggered entrance (delay set inline by script.js) */
+  animation: rise 0.6s var(--ease) both;
+}
+
+/* Accent bar that grows on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--card-accent, var(--sola-teal));
+  transform: scaleY(0.4);
+  transform-origin: center;
+  opacity: 0.6;
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+
+/* Soft tint wash that fades in on hover */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--card-accent, var(--sola-teal));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+  outline: none;
+}
+
+.card:hover::before,
+.card:focus-visible::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.card:hover::after,
+.card:focus-visible::after {
+  opacity: 0.05;
+}
+
+.card:focus-visible {
+  box-shadow: var(--shadow-lg), 0 0 0 3px rgba(17, 178, 214, 0.45);
+}
+
+/* Icon badge */
+.card-icon {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--card-accent, var(--sola-teal));
+  color: #fff;
+  transition: transform 0.35s var(--ease);
+}
+
+.card:hover .card-icon,
+.card:focus-visible .card-icon {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.card-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* Card text */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+}
+
+.card-sub {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Arrow affordance */
+.card-arrow {
+  margin-left: auto;
+  flex: 0 0 auto;
+  color: var(--ink-soft);
+  transition: transform 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.card:hover .card-arrow,
+.card:focus-visible .card-arrow {
+  transform: translateX(4px);
+  color: var(--card-accent, var(--sola-teal));
+}
+
+.card-arrow svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Unconfigured / placeholder state */
+.card.is-placeholder {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.card.is-placeholder .card-sub {
+  font-style: italic;
+}
+
+.card-badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sola-deep-blue);
+  background: #eaf4fb;
+  border: 1px solid #d4e8f5;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+/* ------------------------------ Footer ---------------------------- */
+.footer {
+  margin-top: auto;
+  padding-top: clamp(40px, 6vw, 64px);
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ---------------------------- Animations -------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE  (mobile-first priority — this site is used mostly on phones)
+   Breakpoints:  ≤360 small phone · ≤480 phone · 481–900 tablet · >900 desktop
+   ===================================================================== */
+
+/* ------- Phones (≤480px): single column, tappable 64–76px cards ------- */
+@media (max-width: 480px) {
+  .page {
+    /* consistent ~18px horizontal gutter, no horizontal scroll */
+    padding: 28px 18px 36px;
+  }
+
+  .logo-wrap {
+    /* tighter, balanced padding around the square logo */
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    width: clamp(180px, 56vw, 210px); /* ~180–210px on phones */
+  }
+
+  .tagline {
+    font-size: clamp(0.875rem, 3.4vw, 1rem); /* ~14–16px */
+    line-height: 1.4;
+    max-width: 30ch;
+    margin-bottom: 14px;
+  }
+
+  .headline {
+    font-size: clamp(1.6rem, 7vw, 2.1rem); /* prominent but fits small screens */
+    margin-bottom: 10px;
+  }
+
+  .subtext {
+    font-size: 0.98rem;
+    max-width: 34ch;
+  }
+
+  .hero {
+    margin-bottom: 26px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr; /* single column */
+    gap: 14px;
+  }
+
+  .card {
+    gap: 14px;
+    padding: 12px 16px;         /* → card height lands ~68–74px */
+    min-height: 68px;
+    border-radius: 16px;
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-sub {
+    font-size: 0.8rem;
+  }
+
+  /* On touch there is no hover; disable the lift so taps feel instant */
+  .card:active {
+    transform: scale(0.99);
+  }
+}
+
+/* ------------------- Very small phones (≤360px) -------------------- */
+@media (max-width: 360px) {
+  .page {
+    padding: 24px 16px 32px;
+  }
+  .logo {
+    width: clamp(170px, 60vw, 190px);
+  }
+  .headline {
+    font-size: 1.55rem;
+  }
+  .card {
+    gap: 12px;
+    padding: 11px 14px;
+  }
+  .card-title {
+    font-size: 0.96rem;
+  }
+}
+
+/* ------------------------ Tablets (481–900px) --------------------- */
+@media (min-width: 481px) and (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr); /* two comfortable columns */
+  }
+  .card {
+    min-height: 72px;
+  }
+}
+
+/* ----------------- Reduced motion accessibility ------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
